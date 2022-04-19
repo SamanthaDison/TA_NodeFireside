@@ -13,6 +13,7 @@ class TodosService {
     async editTodo(id, todoToEdit) {
         const editedTodo = await dbContext.Todos.findById(id)
         editedTodo.description = todoToEdit.description
+        // null coalescence... if user 
         editedTodo.completed = todoToEdit.completed != null ? todoToEdit.completed : editedTodo.completed
         await editedTodo.save()
         return editedTodo
